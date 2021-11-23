@@ -8,6 +8,17 @@ let passport = require("passport");
 
 // router.get("/", listController.displayContactList);
 
+//router.get("/users/survey", (req, res) => {
+// ContactsList.find((err, businessContactsList) => {
+//  if (err) {
+//    return console.error(err);
+//   } else {
+//     console.log(businessContactsList);
+//     res.send({ businessContactsList });
+//  }
+// });
+//});
+
 // router.get("/test", (req, res) => {
 //   ContactsList.find((err, businessContactsList) => {
 //     if (err) {

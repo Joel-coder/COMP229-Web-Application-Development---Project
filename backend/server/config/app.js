@@ -33,8 +33,9 @@ mongoDB.once("open", () => {
 
 let indexRouter = require("../routes/index");
 let usersRouter = require("../routes/users");
-let credentialRouter = require("../routes/credentials");
-let ContactInfoRouter = require("../routes/businessContactsList");
+//let credentialRouter = require("../routes/credentials");
+let books = require("../routes/books");
+//let ContactInfoRouter = require("../routes/businessContactsList");
 
 let app = express();
 
@@ -99,7 +100,7 @@ passport.use(strategy);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 //app.use("/login", credentialRouter);
-app.use("/contactInfo", ContactInfoRouter);
+app.use("/books", books);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
