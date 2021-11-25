@@ -33,9 +33,8 @@ mongoDB.once("open", () => {
 
 let indexRouter = require("../routes/index");
 let usersRouter = require("../routes/users");
-//let credentialRouter = require("../routes/credentials");
-let books = require("../routes/books");
-//let ContactInfoRouter = require("../routes/businessContactsList");
+let credentialRouter = require("../routes/credentials");
+let ContactInfoRouter = require("../routes/businessContactsList");
 
 let app = express();
 
@@ -63,10 +62,12 @@ app.use(
 // initialize flash
 app.use(flash());
 
+const cors = require("cors");
+
 //Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(cors({ origin: "http://localhost:3000" }));
 //Passport user configuration
 
 //create a user model iinstance
@@ -100,7 +101,7 @@ passport.use(strategy);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 //app.use("/login", credentialRouter);
-app.use("/books", books);
+app.use("/contactInfo", ContactInfoRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

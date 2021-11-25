@@ -6,18 +6,37 @@ let jwt = require("jsonwebtoken");
 
 let passport = require("passport");
 
-// router.get("/", listController.displayContactList);
+//let ContactsList = require("../models/businessContactsList");
 
-//router.get("/users/survey", (req, res) => {
-// ContactsList.find((err, businessContactsList) => {
-//  if (err) {
-//    return console.error(err);
-//   } else {
-//     console.log(businessContactsList);
-//     res.send({ businessContactsList });
-//  }
-// });
-//});
+let listController = require("../controller/businessContactsList");
+/* Read operation */
+
+// helper function for guard purposes
+function requireAuth(req, res, next) {
+  // check if the user is logged in
+  if (!req.isAuthenticated()) {
+    return res.redirect("/login");
+  }
+  next();
+}
+
+router.get("/", listController.displayContactList);
+
+/*Create operation*/
+router.get("/add", listController.displayAddList);
+/* Processing the add Page */
+router.post("/add", listController.processAddList);
+
+/* display Update operation*/
+router.get("/edit/:id", listController.displayUpdateList);
+
+/* Processing the Update Page */
+router.post("/edit/:id", listController.processUpdateList);
+
+/*delete operation*/
+router.get("/delete/:id", listController.processDeleteList);
+
+module.exports = router;
 
 // router.get("/test", (req, res) => {
 //   ContactsList.find((err, businessContactsList) => {
